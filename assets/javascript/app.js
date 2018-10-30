@@ -25,6 +25,7 @@
 
 $(document).ready(function() {
 
+    //flipclock functionality -- uses the extra css and js files to run
     var clock = $('.flip-clock').FlipClock ({
         clockFace: 'TwentyFourHourClock'
         });
@@ -32,9 +33,10 @@ $(document).ready(function() {
     $("#addTrainButton").on("click", function(event) {
         event.preventDefault();
 
+        //tracks entries added into the form after the submit button is clicked
         var trainName = $("#trainNameInput").val().trim();
         var trainDest = $("#destinationInput").val().trim();
-        var trainFirstTime = moment($("#firstTimeInput").val().trim(), "HH:mm").subtract(1, "years");
+        var trainFirstTime = $("#firstTimeInput").val().trim();
         var trainFreq = $("#frequencyInput").val().trim();
 
         console.log("First Time: " + trainFirstTime);
@@ -42,12 +44,14 @@ $(document).ready(function() {
         console.log(trainDest);
         console.log(trainFreq);
 
+        var trainFirstTimeConverter = moment(trainFirstTime, "HH:mm").subtract(1, "years");
+
         // Current Time
         var currentTime = moment();
         console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
         // Difference between the times
-        var diffTime = moment().diff(moment(trainFirstTime), "minutes");
+        var diffTime = moment().diff(moment(trainFirstTimeConverter), "minutes");
         console.log("DIFFERENCE IN TIME: " + diffTime);
 
         // Time apart (remainder)
@@ -61,7 +65,51 @@ $(document).ready(function() {
         // Next Train
         var nextTrain = moment().add(tMinutesTilTrain, "minutes");
         console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-    })
-        
 
-})
+        //temporary object for new train data
+        var newTrain = {
+            name: trainName,
+            destination: trainDest,
+            firstTime: trainFirstTime,
+            frequency: trainFreq
+        };
+
+        //uploads train data to firebase
+        database.ref().push(newTrain);
+
+        alert("Choo Choo! Your train has been added to the schedule.");
+
+        //clear the form
+        $("#trainNameInput").val("");
+        $("#destinationInput").val("");
+        $("#firstTimeInput").val("");
+        $("#frequencyInput").val("");
+    });
+
+    database.ref().on("child_added", function(childSnapshot) {
+        console.log(childSnapshot.val());
+    
+        //store everything in a variable
+        var trainName = childSnapshot.val().name;
+        var trainDest = childSnapshot.val().destination;
+        var trainFirstTime = childSnapshot.val().firstTime;
+        var trainFreq = childSnapshot.val().frequency;
+    
+        console.log(trainName);
+        console.log(trainDest);
+        console.log(trainFirstTime);
+        console.log(trainFreq);
+
+        var newRow = $("<tr>").append(
+            $("<td>").text(trainName),
+            $("<td>").text(trainDest),
+            $("<td>").text(trainFreq),
+            $("<td>").text(nextTrain),
+            $("<td>").text(tMinutesTilTrain),
+        );
+
+        $("#train-table > tbody").append(newRow);
+
+    });
+});
+
