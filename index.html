@@ -7,15 +7,15 @@
     <title>All Aboard!</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 		
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
    
 </head>
 
@@ -35,8 +35,6 @@
             </div>
         </div>
         
-
-
         <div class="row">
             <div class="col-md-12">
                 <!--Train Schedule Panel-->
@@ -88,7 +86,7 @@
                                 <label for="frequencyInput">Frequency (min)</label>
                                 <input type="text" class="form-control" id="frequencyInput" placeholder="How often does the train run?">
                             </div>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
+                            <button type="submit" class="btn btn-secondary" id="addTrainButton">Submit</button>
 
                         </form>
                     </div>
@@ -96,10 +94,7 @@
             </div>
         </div>
     
-
     </div> 
-
-
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="assets/css/flipclock.css">

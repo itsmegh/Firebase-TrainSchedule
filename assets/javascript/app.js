@@ -21,12 +21,47 @@
 
   firebase.initializeApp(config);
 
+  var database = firebase.database();
 
 $(document).ready(function() {
 
     var clock = $('.flip-clock').FlipClock ({
         clockFace: 'TwentyFourHourClock'
         });
+
+    $("#addTrainButton").on("click", function(event) {
+        event.preventDefault();
+
+        var trainName = $("#trainNameInput").val().trim();
+        var trainDest = $("#destinationInput").val().trim();
+        var trainFirstTime = moment($("#firstTimeInput").val().trim(), "HH:mm").subtract(1, "years");
+        var trainFreq = $("#frequencyInput").val().trim();
+
+        console.log("First Time: " + trainFirstTime);
+        console.log(trainName);
+        console.log(trainDest);
+        console.log(trainFreq);
+
+        // Current Time
+        var currentTime = moment();
+        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+        // Difference between the times
+        var diffTime = moment().diff(moment(trainFirstTime), "minutes");
+        console.log("DIFFERENCE IN TIME: " + diffTime);
+
+        // Time apart (remainder)
+        var tRemainder = diffTime % trainFreq; // will tell you what's left over 
+        console.log(tRemainder);
+
+        // Minutes Until Train
+        var tMinutesTilTrain = trainFreq - tRemainder;
+        console.log("MINUTES TILL TRAIN: " + tMinutesTilTrain);
+
+        // Next Train
+        var nextTrain = moment().add(tMinutesTilTrain, "minutes");
+        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    })
         
 
 })
