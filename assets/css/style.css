@@ -1,6 +1,55 @@
+body {
+    background-image: url("../images/funky-lines/funky-lines.png");
+}
+
 .flipclock {
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
+}
+
+.fa-train {
+    color: #011f4b;
+}
+
+.jumbotron {
+    font-family: 'Orbitron', sans-serif;
+    color: #011f4b;
+    background-color: #b3cde0;
+
+}
+
+.panel-title {
+    font-family: 'Roboto', sans-serif;
+    color: #03396c;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+td {
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+th {
+    font-family: 'Orbitron', sans-serif;
+    color: #011f4b;
+
+
+}
+
+label {
+    font-family: 'Orbitron', sans-serif;
+    color: #011f4b;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#addTrainButton {
+    font-family: 'Roboto', sans-serif;
+    color: #011f4b;
 }
