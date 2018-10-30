@@ -22,56 +22,42 @@
 <body>
           
     <div class="container">   
-        <div class="jumbotron jumbotron-fluid">
-            <span class="jumbotronStyle"><h1 class="display-4"><span class="fas fa-train"></span> All Aboard! </h1>
-            <br>
-            <div class="flip-clock"></div>
-        </span>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-12">
-
+        <div class="jumbotron jumbotron-fluid text-center">
+            <span class="jumbotronStyle"><h1 class="display-4"><span class="fas fa-train"></span>  All Aboard! </h1>
+            </span>
+        <br>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-9">
+                    <div class="flip-clock"></div>
+                </div>
             </div>
         </div>
+        
+
 
         <div class="row">
             <div class="col-md-12">
-                <!--Search Parameters Panel-->
+                <!--Train Schedule Panel-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Search Parameters</h3>
+                        <h3 class="panel-title">Current Train Schedule</h3>
                     </div>
                     <div class="panel-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="search">Search Term:</label>
-                                <input type="text" class="form-control" id="search">
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="recordNumber">Number of Records to Retrieve:</label>
-                                <select class="form-control" id="numRecords">
-                                    <option value=1>1</option>
-                                    <option value=5 selected>5</option>
-                                    <option value=10>10</option>
-                                </select>
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="startYear">Start Year: </label>
-                                <input type="text" class="form-control" id="startYear">
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="endYear">End Year: </label>
-                                <input type="text" class="form-control" id="endYear">
-                            </div>
-                
-                            <button class="btn btn-secondary" type="submit" id="searchBtn">Search</button>
-                            <input class="btn btn-secondary" type="reset" value="Clear Results">
-                
-                        </form>
+                        <table class="table table-sm table-hover" id='train-table'>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -79,26 +65,32 @@
         
         <div class="row">
             <div class="col-md-12">
-                <!--Results Panel-->
+                <!--Entry Panel-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Search Results</h3>
+                        <h3 class="panel-title">Add a New Train</h3>
                     </div>
-                    <div class="panel-body" id="wellSection">
-                        <!-- <div class="well">
-                            <h2>Title</h2>
-                            <h3>Author</h3>
-                            <h4>Section</h4>
-                            <h4>Date</h4>
-                            <h4>Link</h4>
-                        </div>
-                        <div class="well">
-                            <h2>Title</h2>
-                            <h3>Author</h3>
-                            <h4>Section</h4>
-                            <h4>Date</h4>
-                            <h4>Link</h4>
-                        </div> -->
+                    <div class="panel-body" id="entrySection">
+                        <form>
+                            <div class="form-group">
+                                <label for="trainNameInput">Train Name</label>
+                                <input type="text" class="form-control" id="trainNameInput" placeholder="What's the train called?">
+                            </div>
+                            <div class="form-group">
+                                <label for="destinationInput">Destination</label>
+                                <input type="text" class="form-control" id="destinationInput" placeholder="Where are we going?">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstTimeInput">First Train Time (HH:mm - Military Time)</label>
+                                <input type="text" class="form-control" id="firstTimeInput" placeholder="When does the first train leave?">
+                            </div>
+                            <div class="form-group">
+                                <label for="frequencyInput">Frequency (min)</label>
+                                <input type="text" class="form-control" id="frequencyInput" placeholder="How often does the train run?">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -110,10 +102,11 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="assets/css/flipclock.css">
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 <script type="text/javascript" src="assets/javascript/flipclock.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+
 
 </body>
 
