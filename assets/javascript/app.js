@@ -112,9 +112,17 @@ $(document).ready(function() {
             $("<td>").text(trainFreq),
             $("<td>").text(nextArrival),
             $("<td>").text(tMinutesTilTrain),
+            $("<i>").addClass( "far fa-trash-alt"),
+
         );
 
         $("#train-table > tbody").append(newRow);
+
+        //delete a train option
+        $(document).on("click", ".fa-trash-alt", function(){
+            $(this).parents("tr").remove();
+            $(".add-new").removeAttr("disabled");
+        });
 
     });
 //});
