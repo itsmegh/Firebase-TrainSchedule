@@ -80,6 +80,10 @@ $(document).ready(function() {
             // Current Time
             var currentTime = moment();
             console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+           
+            setInterval(function() {
+                moment((currentTime).format("hh:mm"))
+            }, 60000);
         
             // Difference between the times
             var diffTime = moment().diff(moment(trainFirstTimeConverter), "minutes");
@@ -94,7 +98,11 @@ $(document).ready(function() {
             console.log("MINUTES TILL TRAIN: " + tMinutesTilTrain);
         
             // Next Train
-            var nextTrain = moment().add(tMinutesTilTrain, "minutes");
+            var nextTrain = setInterval(function() {
+                (moment().add(tMinutesTilTrain, "minutes")); console.log("tick");
+            }, 60000);
+            //moment().add(tMinutesTilTrain, "minutes");
+            
             console.log("ARRIVAL TIME: " + moment(nextTrain).format('MMMM Do YYYY, h:mm:ss a'));
             //Formatting for next train
             var nextArrival = moment(nextTrain).format('MMMM Do YYYY, h:mm a');
@@ -111,7 +119,7 @@ $(document).ready(function() {
             $("<td>").text(trainDest),
             $("<td>").text(trainFreq),
             $("<td>").text(nextArrival),
-            $("<td>").text(tMinutesTilTrain),
+            $("<td>").text(nextTrain),
             $("<i>").addClass( "far fa-trash-alt"),
 
         );
